@@ -247,7 +247,8 @@ public class TraverserApiTest extends BaseApiTest {
         List<Shard> shards = verticesAPI.shards(1 * 1024 * 1024);
         List<Vertex> vertices = new LinkedList<>();
         for (Shard shard : shards) {
-            vertices.addAll(ImmutableList.copyOf(verticesAPI.scan(shard)));
+            vertices.addAll(ImmutableList.copyOf(
+                            verticesAPI.scan(shard, "").results()));
         }
         Assert.assertEquals(6, vertices.size());
     }
@@ -264,7 +265,8 @@ public class TraverserApiTest extends BaseApiTest {
         List<Shard> shards = edgesAPI.shards(1 * 1024 * 1024);
         List<Edge> edges = new LinkedList<>();
         for (Shard shard : shards) {
-            edges.addAll(ImmutableList.copyOf(edgesAPI.scan(shard)));
+            edges.addAll(ImmutableList.copyOf(
+                         edgesAPI.scan(shard, "").results()));
         }
         Assert.assertEquals(6, edges.size());
     }
